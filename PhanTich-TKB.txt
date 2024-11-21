@@ -1,0 +1,22 @@
+- Giao vien
+	+ Ma giao vien: String
+	+ Ten giao vien: String
+	+ Mon hoc: Mon hoc
+
+- Lop
+	+ Ma lop
+	+ Ten lop
+	+ Mon hoc
+	+ Phong
+
+- Mon hoc
+	+ Ma mon hoc
+	+ Ten mon hoc
+
+- Phong
+	+ Ma phong
+	+ Ten phong 
+
+- Thoi gian
+	+ Ma 
+	+ Ten
