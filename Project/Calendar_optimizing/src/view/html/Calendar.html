@@ -4,65 +4,7 @@
     <title>Student Timetable</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-        .container {
-            flex: 1;
-            padding: 20px;
-        }
-        .timetable {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .timetable th, .timetable td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-        .timetable th {
-            background-color: #f2f2f2;
-        }
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-        .controls select {
-            padding: 5px;
-            font-size: 16px;
-        }
-        .buttons {
-            display: flex;
-            justify-content: space-between;
-        }
-        .buttons button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            color: white;
-        }
-        .admin-btn {
-            background-color: #007BFF;
-        }
-        .logout-btn {
-            background-color: #DC3545;
-        }
-    </style>
+    <link rel="stylesheet" href="/view/css/Calendar.css">
 </head>
 <body>
 <header>
@@ -71,7 +13,7 @@
 <div class="container">
     <div class="controls">
         <label for="class-select">Select Class:</label>
-        <select id="class-select">
+        <select id="class-select" class="border border-gray-300 rounded p-2">
             <option value="class1">Class 1</option>
             <option value="class2">Class 2</option>
             <option value="class3">Class 3</option>
