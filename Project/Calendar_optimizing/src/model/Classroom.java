@@ -2,14 +2,14 @@ package model;
 
 import java.util.List;
 
-public class Subject {
+public class Classroom {
     String id, name;
-    List<Teacher> teachers;
+    List<Chromosome> schedules;
 
-    public Subject(String id, String name, List<Teacher> teachers) {
+    public Classroom(String id, String name, List<Chromosome> schedules) {
         this.id = id;
         this.name = name;
-        this.teachers = teachers;
+        this.schedules = schedules;
     }
 
     public String getId() {
@@ -28,11 +28,11 @@ public class Subject {
         this.name = name;
     }
 
-    public List<Teacher> getTeachers() {
-        return teachers;
+    public List<Chromosome> getSchedules() {
+        return schedules;
     }
 
-    public void setTeachers(List<Teacher> teachers) {
-        this.teachers = teachers;
+    public void setSchedules(List<Chromosome> schedules) {
+        this.schedules = schedules;
     }
 }

@@ -1,33 +1,24 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Objects;
+import java.util.List;
 
 public class Teacher {
-    private int id;
-    private String name;
-    private int periodNumInWeek;
-    private String classType;
-    private int subjectId;
-    private ArrayList<Classes> classes;
+    String id, name;
+    List<Subject> subjects;
+    List<TimeSlot> availableTimeSlots;
 
-    public Teacher() {
-    }
-
-    public Teacher(int id, String name, int periodNumInWeek, String classType, int subjectId, ArrayList<Classes> classes) {
+    public Teacher(String id, String name, List<Subject> subjects, List<TimeSlot> availableTimeSlots) {
         this.id = id;
         this.name = name;
-        this.periodNumInWeek = periodNumInWeek;
-        this.classType = classType;
-        this.subjectId = subjectId;
-        this.classes = classes;
+        this.subjects = subjects;
+        this.availableTimeSlots = availableTimeSlots;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -39,48 +30,19 @@ public class Teacher {
         this.name = name;
     }
 
-    public int getPeriodNumInWeek() {
-        return periodNumInWeek;
+    public List<Subject> getSubjects() {
+        return subjects;
     }
 
-    public void setPeriodNumInWeek(int periodNumInWeek) {
-        this.periodNumInWeek = periodNumInWeek;
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
     }
 
-    public String getClassType() {
-        return classType;
+    public List<TimeSlot> getAvailableTimeSlots() {
+        return availableTimeSlots;
     }
 
-    public void setClassType(String classType) {
-        this.classType = classType;
-    }
-
-    public int getSubjectId() {
-        return subjectId;
-    }
-
-    public void setSubjectId(int subjectId) {
-        this.subjectId = subjectId;
-    }
-
-    public ArrayList<Classes> getClasses() {
-        return classes;
-    }
-
-    public void setClasses(ArrayList<Classes> classes) {
-        this.classes = classes;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Teacher teacher = (Teacher) o;
-        return id == teacher.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
+    public void setAvailableTimeSlots(List<TimeSlot> availableTimeSlots) {
+        this.availableTimeSlots = availableTimeSlots;
     }
 }
