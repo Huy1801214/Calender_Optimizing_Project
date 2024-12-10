@@ -82,7 +82,8 @@ public class Data {
     }
 
     // random ra 1 thoi khoa bieu cho moi lop
-    public static Chromosome generateRandomSchedule(String classroomId, List<Teacher> teachers, List<Subject> subjects, List<TimeSlot> timeSlots) {
+    public static Chromosome generateRandomSchedule(String classroomId, List<Teacher> teachers,
+                                                    List<Subject> subjects, List<TimeSlot> timeSlots) {
         List<Gene> genes = new ArrayList<>();
         Random rand = new Random();
 
