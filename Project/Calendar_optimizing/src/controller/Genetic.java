@@ -30,11 +30,10 @@ public class Genetic {
                 if (tkb.getSoDiemFitness() >= diemDung) {
                     tkbTimDuoc = tkb;
                     break;
-                } else {
-                    quanTheMoi = chonLocVaLaiGhep.taoQuanTheMoiSauKhiChonLocVaLaiGhep(lop, quanThe);
-                    quanThe = quanTheMoi;
                 }
             }
+            quanTheMoi = chonLocVaLaiGhep.taoQuanTheMoiSauKhiChonLocVaLaiGhep(lop, quanThe);
+            quanThe = quanTheMoi;
         }
         tkbTimDuoc = timTkbTotNhatTrongQuanTheCuoiCungNeuKhTimDuoc(quanThe);
         return tkbTimDuoc;
@@ -42,9 +41,9 @@ public class Genetic {
 
     private ThoiKhoaBieu timTkbTotNhatTrongQuanTheCuoiCungNeuKhTimDuoc(QuanThe quanThe) {
         danhGia.danhGiaCacTKBTrongQuanThe(quanThe);
-        tkbTimDuoc = quanThe.getQuanThe().getFirst();
-        for(ThoiKhoaBieu tkb : quanThe.getQuanThe()) {
-            if(tkb.getSoDiemFitness() >= tkbTimDuoc.getSoDiemFitness()) {
+        tkbTimDuoc = quanThe.getQuanThe().get(0);
+        for (ThoiKhoaBieu tkb : quanThe.getQuanThe()) {
+            if (tkb.getSoDiemFitness() >= tkbTimDuoc.getSoDiemFitness()) {
                 tkbTimDuoc = tkb;
             }
         }
