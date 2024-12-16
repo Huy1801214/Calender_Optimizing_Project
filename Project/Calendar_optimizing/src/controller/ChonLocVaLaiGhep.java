@@ -18,7 +18,8 @@ phương pháp lai ghép (lai ghép 1 điểm)
     b1: chon 1 diem bat ki từ cha hoặc mẹ
     b2: swap các cá thể cua cha và mẹ
 đột biến
-
+    b1: chọn random 1 nhóm tiết học trong cùng 1 ngày hoặc các ngày của các tkb (ti le dot biến là 5%)
+    b2: swap nó với nhau
 Tạo ra quần thể mới
  */
 public class ChonLocVaLaiGhep {
