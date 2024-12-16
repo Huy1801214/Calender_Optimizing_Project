@@ -1,7 +1,9 @@
 package controller;
 
-import model.QuanThe;
-import model.ThoiKhoaBieu;
+import model.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /*
 yêu cầu: không có xung đột 100đ
@@ -33,4 +35,6 @@ public class DanhGia {
 
         return score;
     }
+
+
 }
