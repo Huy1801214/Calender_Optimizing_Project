@@ -33,6 +33,15 @@ public class TaoTKB {
         return tkb;
     }
 
+    public List<ThoiKhoaBieu> taoTKBChoNhieuLop(List<Lop> dsLop) {
+        List<ThoiKhoaBieu> dsTKBCuaNhieuLop = new ArrayList<>();
+        for (Lop lop : dsLop) {
+            ThoiKhoaBieu tkb = taoTKBChoMoiLop(lop);
+            dsTKBCuaNhieuLop.add(tkb);
+        }
+        return dsTKBCuaNhieuLop;
+    }
+
     private GiaoVien chonGiaoVienThichHop(MonHoc monHoc) {
         List<GiaoVien> dsGiaoVienThichHopChoMonHoc = new ArrayList<>();
 
@@ -50,5 +59,12 @@ public class TaoTKB {
         Lop lop = Data.taoDanhSachLop().get(1);
         ThoiKhoaBieu t = taoTKB.taoTKBChoMoiLop(lop);
         t.printTKB();
+        System.out.println("----------------------");
+        List<Lop> dsLop = Data.taoDanhSachLop();
+        List<ThoiKhoaBieu> l = taoTKB.taoTKBChoNhieuLop(dsLop);
+        for(ThoiKhoaBieu tkb : l){
+            tkb.printTKB();
+        }
+
     }
 }
