@@ -6,13 +6,13 @@ public class GiaoVien {
     String maGV;
     String tenGV;
     List<MonHoc> dsMonHocGVDay;
-    int soTietDayTrongTuan;
+    int soTietDayToiDaTrongTuan;
 
-    public GiaoVien(String maGV, String tenGV, List<MonHoc> dsMonHocGVDay, int soTietDayTrongTuan) {
+    public GiaoVien(String maGV, String tenGV, List<MonHoc> dsMonHocGVDay, int soTietDayToiDaTrongTuan) {
         this.maGV = maGV;
         this.tenGV = tenGV;
         this.dsMonHocGVDay = dsMonHocGVDay;
-        this.soTietDayTrongTuan = soTietDayTrongTuan;
+        this.soTietDayToiDaTrongTuan = soTietDayToiDaTrongTuan;
     }
 
     public String getMaGV() {
@@ -39,16 +39,16 @@ public class GiaoVien {
         this.dsMonHocGVDay = dsMonHocGVDay;
     }
 
-    public int getSoTietDayTrongTuan() {
-        return soTietDayTrongTuan;
+    public int getSoTietDayToiDaTrongTuan() {
+        return soTietDayToiDaTrongTuan;
     }
 
-    public void setSoTietDayTrongTuan(int soTietDayTrongTuan) {
-        this.soTietDayTrongTuan = soTietDayTrongTuan;
+    public void setSoTietDayToiDaTrongTuan(int soTietDayToiDaTrongTuan) {
+        this.soTietDayToiDaTrongTuan = soTietDayToiDaTrongTuan;
     }
 
     @Override
     public String toString() {
-        return "GiaoVien" + tenGV + '\'';
+        return tenGV + '\'';
     }
 }

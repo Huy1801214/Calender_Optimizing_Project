@@ -27,6 +27,6 @@ public class Lop {
 
     @Override
     public String toString() {
-        return "Lop " + tenLop ;
+        return tenLop ;
     }
 }
