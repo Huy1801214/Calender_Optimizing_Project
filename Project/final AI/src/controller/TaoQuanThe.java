@@ -30,7 +30,9 @@ public class TaoQuanThe {
     }
 
     public void printQuanThe(QuanThe quanThe1) {
-        for (int i = 0; i < kichThuocQuanThe; i++) {
+        DanhGia danhGia = new DanhGia();
+        danhGia.danhGiaCacCaTheTrongQuanThe(quanThe1);
+        for (int i = 0; i < quanThe1.getQuanThe().size(); i++) {
             System.out.println("Ca The thu " + (i + 1));
             quanThe1.getQuanThe().get(i).printCaThe();
             System.out.println();

@@ -1,5 +1,9 @@
 package model;
 
+import controller.DanhGia;
+import controller.TaoQuanThe;
+import data.Data;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,6 +60,17 @@ public class CaThe implements Cloneable {
         for (Gene gene : caThe.getGenes()) {
             gene.printTKB();
             System.out.println();
+        }
+        System.out.println("diem " + caThe.getFitnessScore());
+    }
+
+    public static void main(String[] args) {
+        TaoQuanThe taoQuanThe = new TaoQuanThe();
+        QuanThe quanThe = taoQuanThe.taoQuanThe(Data.taoDanhSachLop());
+        DanhGia danhGia = new DanhGia();
+        danhGia.danhGiaCacCaTheTrongQuanThe(quanThe);
+        for(CaThe caThe : quanThe.getQuanThe()) {
+            caThe.printCaThe();
         }
     }
 }

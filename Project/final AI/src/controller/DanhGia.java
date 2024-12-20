@@ -37,6 +37,7 @@ public class DanhGia {
         for (CaThe caThe : quanThe.getQuanThe()) {
             int fitnessScore = tinhFitnessScore(caThe);
             caThe.setFitnessScore(fitnessScore);
+            System.out.println("Diem ca the " + caThe.getFitnessScore());
         }
     }
     public int tinhFitnessScore(CaThe caThe) {
@@ -116,7 +117,16 @@ public class DanhGia {
         TaoCaThe taoCaThe = new TaoCaThe();
         CaThe caThe = taoCaThe.taoCaThe(dsLop);
         DanhGia danhGia = new DanhGia();
-        System.out.println(danhGia.tinhFitnessScore(caThe));
+        //System.out.println(danhGia.tinhFitnessScore(caThe));
+
+        TaoQuanThe taoQuanThe = new TaoQuanThe();
+        QuanThe quanThe = taoQuanThe.taoQuanThe(Data.taoDanhSachLop());
+        danhGia.danhGiaCacCaTheTrongQuanThe(quanThe);
+        for(CaThe ct : quanThe.getQuanThe()) {
+            System.out.println("Diem cua tung ca the ");
+            System.out.println(ct.getFitnessScore());
+        }
+
     }
 
 

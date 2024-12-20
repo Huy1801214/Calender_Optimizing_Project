@@ -38,12 +38,22 @@ public class ChonLocVaLaiGhep {
         for (int i = 0; i < quanTheHienTai.getKichThuocQuanThe(); i++) {
             CaThe caThe = quanTheHienTai.getQuanThe().get(i);
             System.out.println("ca the thu " + i + " trong chon loc va lai ghep la");
-            if (caTheCha == null || caTheCha.getFitnessScore() > caThe.getFitnessScore()) {
+            if (caTheCha == null || caTheCha.getFitnessScore() < caThe.getFitnessScore()) {
+                /*
+
+                 0 0
+                 c1 m1
+
+                 c2 m1
+
+                 */
                 caTheMe = caTheCha;
                 caTheCha = caThe;
-            } else if (caTheMe == null || caTheMe.getFitnessScore() > caThe.getFitnessScore()) {
+            } else if (caTheMe == null || caTheMe.getFitnessScore() < caThe.getFitnessScore()) {
                 caTheMe = caThe;
             }
+
+
 //            } else {
 //                System.err.println("Cha hoac me null");
 //            }

@@ -31,7 +31,7 @@ public class DotBien {
 
             List<Gene> dsGene = caThe.getGenes();
             for (int genPre = 0; genPre < dsGene.size(); genPre++) {
-                for (int genNext = genPre + 1; genNext < dsGene.size(); genNext++) {
+                for (int genNext = genPre + 1; genNext < rand.nextInt(2, dsGene.size()); genNext++) {
 //                    dsGene.get(genPre).printTKB();
 //                    dsGene.get(genNext).printTKB();
                     for (int ngay = 0; ngay < dsGene.get(1).getSoNgayTrongTuan(); ngay++) {

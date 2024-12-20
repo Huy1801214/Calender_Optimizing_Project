@@ -18,9 +18,8 @@ public class Genetic {
     CaThe caTheTimDuoc;
     DotBien dotBien;
 
-    final int kichThuocQuanThe = Data.taoDanhSachLop().size();
-    final int soTheHeToiDa = 100;
-    final int diemDung = 800;
+    final int soTheHeToiDa = 10;
+    final int diemDung = 1000;
 
 
     public Genetic() {
@@ -40,6 +39,10 @@ public class Genetic {
             System.out.println("quan the hien tai trong the he " + (soTheHe + 1) );
             taoQuanThe.printQuanThe(quanTheHienTai);
             danhGia.danhGiaCacCaTheTrongQuanThe(quanTheHienTai);
+            for(CaThe ct : quanTheHienTai.getQuanThe()) {
+                System.out.println("Diem cua tung ca the ");
+                System.out.println(ct.getFitnessScore());
+            }
             for (CaThe caThe : quanTheHienTai.getQuanThe()) {
                 if (caThe.getFitnessScore() >= diemDung) {
                     return caThe;
@@ -77,13 +80,17 @@ public class Genetic {
 
             soTheHe++;
         }
+
         System.out.println("quan the tot nhat tim duoc la ");
         return timCaTheTotNhatTrongQuanTheCuoiCungNeuKhongTimDuoc(quanTheHienTai);
     }
 
     private CaThe timCaTheTotNhatTrongQuanTheCuoiCungNeuKhongTimDuoc(QuanThe quanThe) {
         danhGia.danhGiaCacCaTheTrongQuanThe(quanThe);
-        caTheTimDuoc = quanThe.getQuanThe().getFirst();
+        for(CaThe ct : quanThe.getQuanThe()) {
+            System.out.println("Diem cua tung ca the ");
+            System.out.println(ct.getFitnessScore());
+        }        caTheTimDuoc = quanThe.getQuanThe().getFirst();
         for (CaThe caTheCon : quanThe.getQuanThe()) {
             if (caTheCon.getFitnessScore() >= caTheTimDuoc.getFitnessScore()) {
                 caTheTimDuoc = caTheCon;
