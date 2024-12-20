@@ -9,7 +9,7 @@ public class QuanThe {
     List<CaThe> quanThe;
     int kichThuocQuanThe;
 
-    public QuanThe(List<CaThe> quanThe, int kichThuocQuanThe) {
+    public QuanThe(List<CaThe> quanThe) {
         this.quanThe = quanThe;
         this.kichThuocQuanThe = kichThuocQuanThe;
     }
@@ -30,13 +30,5 @@ public class QuanThe {
         this.kichThuocQuanThe = kichThuocQuanThe;
     }
 
-    public void printQuanThe() {
-        for (int i = 0; i < quanThe.size(); i++) {
-            for (CaThe caThe : quanThe) {
-                System.out.println("ca the thu " + (i + 1));
-                caThe.printCaThe();
-                System.out.println();
-            }
-        }
-    }
+
 }

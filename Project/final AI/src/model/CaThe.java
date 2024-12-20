@@ -42,12 +42,11 @@ public class CaThe {
     }
 
     public void printCaThe() {
-        for (int i = 0; i < kichThuocCaThe; i++) {
-            for (Gene gene : genes) {
-                System.out.println("Thời khóa biểu lop " + gene.getLop() + ":");
-                genes.get(i).printTKB();
-                System.out.println("--------------------");
-            }
+        CaThe caThe = new CaThe(genes);
+        System.out.println("TKB toàn trường: ");
+        for (Gene gene : caThe.getGenes()) {
+            gene.printTKB();
+            System.out.println();
         }
     }
 }
