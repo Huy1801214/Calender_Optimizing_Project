@@ -12,15 +12,16 @@ import java.util.Random;
 //	+ Đổi giáo viên
 public class DotBien {
     int tiLeDotBien = 50;
+
     public List<CaThe> dotBien(List<CaThe> dsCaThe) {
         List<CaThe> dsCaTheMoi = new ArrayList<>();
         CaThe caThe = null;
         Random rand = new Random();
         int tiLeNgauNhien = rand.nextInt(101);
-        System.out.println("Ti le ngau nhien: " + tiLeNgauNhien);
+        //System.out.println("Ti le ngau nhien: " + tiLeNgauNhien);
         if (tiLeNgauNhien > tiLeDotBien) {
             int viTriCaTheNgauNhien = rand.nextInt(dsCaThe.size());
-            System.out.println("Vi tri ca the ngau nhien: " + viTriCaTheNgauNhien);
+            //System.out.println("Vi tri ca the ngau nhien: " + viTriCaTheNgauNhien);
             if (viTriCaTheNgauNhien == 0) {
                 dsCaTheMoi.add(dsCaThe.get(1));
             } else {
@@ -31,8 +32,8 @@ public class DotBien {
             List<Gene> dsGene = caThe.getGenes();
             for (int genPre = 0; genPre < dsGene.size(); genPre++) {
                 for (int genNext = genPre + 1; genNext < dsGene.size(); genNext++) {
-                    dsGene.get(genPre).printTKB();
-                    dsGene.get(genNext).printTKB();
+//                    dsGene.get(genPre).printTKB();
+//                    dsGene.get(genNext).printTKB();
                     for (int ngay = 0; ngay < dsGene.get(1).getSoNgayTrongTuan(); ngay++) {
                         for (int tiet = 0; tiet < dsGene.get(1).getSoTietHocTrongNgay(); tiet++) {
                             NgayHoc ngayHocGenPre = dsGene.get(genPre).getNgayHoc(ngay, tiet);
@@ -46,21 +47,21 @@ public class DotBien {
                                         ngayHocGenPre.setMonHoc(gv.getDsMonHocGVDay().getFirst());
                                     }
                                 }
-                                System.out.println("-------------------------------");
-                                System.out.println(ngayHocGenPre.toString());
-                                System.out.println(ngayHocGenNext.toString());
+//                                System.out.println("-------------------------------");
+//                                System.out.println(ngayHocGenPre.toString());
+//                                System.out.println(ngayHocGenNext.toString());
                             }
                         }
                     }
-                    System.out.println("------------------------------------");
+//                    System.out.println("------------------------------------");
                 }
             }
             dsCaTheMoi.add(caThe);
         }
-        System.out.println("So luong ca the moi: " + dsCaTheMoi.size());
+//        System.out.println("So luong ca the moi: " + dsCaTheMoi.size());
         if (dsCaTheMoi.size() == 2) {
-            dsCaTheMoi.get(0).printCaThe();
-            dsCaTheMoi.get(1).printCaThe();
+//            dsCaTheMoi.get(0).printCaThe();
+//            dsCaTheMoi.get(1).printCaThe();
             return dsCaTheMoi;
         }
         return dsCaThe;

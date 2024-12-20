@@ -1,5 +1,8 @@
 package model;
 
+import data.Data;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -11,7 +14,11 @@ public class QuanThe {
 
     public QuanThe(List<CaThe> quanThe) {
         this.quanThe = quanThe;
-        this.kichThuocQuanThe = kichThuocQuanThe;
+        this.kichThuocQuanThe = Data.taoDanhSachLop().size();
+    }
+
+    public QuanThe() {
+        quanThe = new ArrayList<>();
     }
 
     public List<CaThe> getQuanThe() {
@@ -29,6 +36,5 @@ public class QuanThe {
     public void setKichThuocQuanThe(int kichThuocQuanThe) {
         this.kichThuocQuanThe = kichThuocQuanThe;
     }
-
 
 }

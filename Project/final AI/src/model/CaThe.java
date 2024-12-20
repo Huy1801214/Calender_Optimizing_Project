@@ -1,28 +1,38 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
 Ca the la tkb cua toan truong (tap hop cua nhieu gene)
  */
 
-public class CaThe {
-    String tenCaThe;
+public class CaThe implements Cloneable {
     int kichThuocCaThe;
     List<Gene> genes;
+    int fitnessScore;
 
     public CaThe(List<Gene> genes) {
-        this.tenCaThe = "";
         this.genes = genes;
         this.kichThuocCaThe = genes.size();
+        this.fitnessScore = 0;
     }
 
-    public String getTenCaThe() {
-        return tenCaThe;
+    public CaThe() {
+        this.fitnessScore = 0;
+        this.genes = new ArrayList<>();
     }
 
-    public void setTenCaThe(String tenCaThe) {
-        this.tenCaThe = tenCaThe;
+    protected Object clone() throws CloneNotSupportedException {
+        return new CaThe(genes);
+    }
+
+    public int getFitnessScore() {
+        return fitnessScore;
+    }
+
+    public void setFitnessScore(int fitnessScore) {
+        this.fitnessScore = fitnessScore;
     }
 
     public int getKichThuocCaThe() {
@@ -43,7 +53,6 @@ public class CaThe {
 
     public void printCaThe() {
         CaThe caThe = new CaThe(genes);
-        System.out.println("TKB toàn trường: ");
         for (Gene gene : caThe.getGenes()) {
             gene.printTKB();
             System.out.println();

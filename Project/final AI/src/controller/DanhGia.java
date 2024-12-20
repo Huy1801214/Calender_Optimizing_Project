@@ -1,10 +1,7 @@
 package controller;
 
 import data.Data;
-import model.CaThe;
-import model.Gene;
-import model.GiaoVien;
-import model.Lop;
+import model.*;
 
 import java.util.List;
 
@@ -36,6 +33,12 @@ public class DanhGia {
     final int diemBanDau = 1000;
     final int diemPhat = -20;
 
+    public void danhGiaCacCaTheTrongQuanThe(QuanThe quanThe) {
+        for (CaThe caThe : quanThe.getQuanThe()) {
+            int fitnessScore = tinhFitnessScore(caThe);
+            caThe.setFitnessScore(fitnessScore);
+        }
+    }
     public int tinhFitnessScore(CaThe caThe) {
         int score = diemBanDau;
 
@@ -56,24 +59,24 @@ public class DanhGia {
         List<Gene> dsGene = caThe.getGenes();
         for (int genPre = 0; genPre < dsGene.size(); genPre++) {
             for (int genNext = genPre + 1; genNext < dsGene.size(); genNext++) {
-                dsGene.get(genPre).printTKB();
-                dsGene.get(genNext).printTKB();
+//                dsGene.get(genPre).printTKB();
+//                dsGene.get(genNext).printTKB();
                 for (int ngay = 0; ngay < dsGene.get(1).getSoNgayTrongTuan(); ngay++) {
                     for (int tiet = 0; tiet < dsGene.get(1).getSoTietHocTrongNgay(); tiet++) {
                         if (dsGene.get(genPre).getNgayHoc(ngay, tiet).getGiaoVien()
                                 == dsGene.get(genNext).getNgayHoc(ngay, tiet).getGiaoVien()) {
                             xungDot += diemPhat;
-                            System.out.println("-------------------------------");
-                            System.out.println(dsGene.get(genPre).getNgayHoc(ngay, tiet).toString());
-                            System.out.println(dsGene.get(genNext).getNgayHoc(ngay, tiet).toString());
-                            System.out.println("Xung dot: " + xungDot);
+//                            System.out.println("-------------------------------");
+//                            System.out.println(dsGene.get(genPre).getNgayHoc(ngay, tiet).toString());
+//                            System.out.println(dsGene.get(genNext).getNgayHoc(ngay, tiet).toString());
+//                            System.out.println("Xung dot: " + xungDot);
                         }
                     }
                 }
-                System.out.println("------------------------------------");
+//                System.out.println("------------------------------------");
             }
         }
-        System.out.println("Rang buoc 1: " + xungDot);
+//        System.out.println("Rang buoc 1: " + xungDot);
         return xungDot;
     }
 
@@ -85,26 +88,26 @@ public class DanhGia {
         List<Gene> dsGene = caThe.getGenes();
         for (GiaoVien gv : dsGiaoVien) {
             int soTietDayToiDaTrongTuan = gv.getSoTietDayToiDaTrongTuan();
-            System.out.println(gv.toString());
-            System.out.println("So tiet day toi da: " + soTietDayToiDaTrongTuan);
+//            System.out.println(gv.toString());
+//            System.out.println("So tiet day toi da: " + soTietDayToiDaTrongTuan);
             for (Gene g : dsGene) {
-                g.printTKB();
+//                g.printTKB();
                 for (int ngay = 0; ngay < g.getSoNgayTrongTuan(); ngay++) {
                     for (int tiet = 0; tiet < g.getSoTietHocTrongNgay(); tiet++) {
                         if (g.getNgayHoc(ngay, tiet).getGiaoVien() == gv) {
                             soTietThucTe++;
-                            System.out.println("-----------------------");
-                            System.out.println(g.getNgayHoc(ngay, tiet).toString());
-                            System.out.println("So tiet thuc te: " + soTietThucTe);
+//                            System.out.println("-----------------------");
+//                            System.out.println(g.getNgayHoc(ngay, tiet).toString());
+//                            System.out.println("So tiet thuc te: " + soTietThucTe);
                         }
                     }
                 }
             }
             xungDot += (soTietThucTe != soTietDayToiDaTrongTuan) ? diemPhat : 0;
             soTietThucTe = 0;
-            System.out.println("Xung dot: " + xungDot);
+//            System.out.println("Xung dot: " + xungDot);
         }
-        System.out.println("Rang buoc 2: " + xungDot);
+//        System.out.println("Rang buoc 2: " + xungDot);
         return xungDot;
     }
 
