@@ -19,7 +19,7 @@ public class DotBien {
         CaThe caThe = null;
         Random rand = new Random();
         int tiLeNgauNhien = rand.nextInt(101);
-        //System.out.println("Ti le ngau nhien: " + tiLeNgauNhien);
+        System.out.println("Ti le ngau nhien: " + tiLeNgauNhien);
         if (tiLeNgauNhien > tiLeDotBien) {
             int viTriCaTheNgauNhien = rand.nextInt(dsCaThe.size());
             //System.out.println("Vi tri ca the ngau nhien: " + viTriCaTheNgauNhien);
@@ -31,40 +31,43 @@ public class DotBien {
             caThe = dsCaThe.get(viTriCaTheNgauNhien);
 
             List<Gene> dsGene = caThe.getGenes();
+            outerLoop:
             for (int genPre = 0; genPre < dsGene.size(); genPre++) {
-                for (int genNext = genPre + 1; genNext < rand.nextInt(2, dsGene.size() + 1); genNext++) {
-//                    dsGene.get(genPre).printTKB();
-//                    dsGene.get(genNext).printTKB();
-                    for (int ngay = 0; ngay < dsGene.get(1).getSoNgayTrongTuan(); ngay++) {
-                        for (int tiet = 0; tiet < dsGene.get(1).getSoTietHocTrongNgay(); tiet++) {
+                for (int genNext = genPre + 1; genNext < dsGene.size(); genNext++) {
+                    int soNgayTrongTuan = dsGene.get(1).getSoNgayTrongTuan();
+                    int soTietTrongNgay = dsGene.get(1).getSoTietHocTrongNgay();
+                    boolean[][] daXuatHienMonHoc = new boolean[soNgayTrongTuan][soTietTrongNgay];
+                    for (int ngay = 0; ngay < soNgayTrongTuan; ngay++) {
+                        for (int tiet = 0; tiet < soTietTrongNgay; tiet++) {
                             NgayHoc ngayHocGenPre = dsGene.get(genPre).getNgayHoc(ngay, tiet);
                             NgayHoc ngayHocGenNext = dsGene.get(genNext).getNgayHoc(ngay, tiet);
-                            if (ngayHocGenPre.getGiaoVien()
-                                    == ngayHocGenNext.getGiaoVien()) {
-                                List<GiaoVien> dsGiaoViens = Data.taoDanhSachGiaoVien();
-                                GiaoVien gv = null;
-                                while (ngayHocGenPre.getGiaoVien() != gv) {
-                                    gv = dsGiaoViens.get(rand.nextInt(dsGiaoViens.size()));
-                                    if (ngayHocGenPre.getGiaoVien() != gv) {
-                                        ngayHocGenPre.setGiaoVien(gv);
-                                        ngayHocGenPre.setMonHoc(gv.getDsMonHocGVDay().getFirst());
-                                    }
+                            GiaoVien gvTemp = ngayHocGenPre.getGiaoVien();
+                            MonHoc monHocTemp = gvTemp.getDsMonHocGVDay().getFirst();
+                            if (ngayHocGenPre.getGiaoVien() == ngayHocGenNext.getGiaoVien()) {
+                                daXuatHienMonHoc[ngay][tiet] = true;
+                                System.out.println("Đã xuất hiện ngày " + ngay + " tiet " + tiet + daXuatHienMonHoc[ngay][tiet]);
+                                while (daXuatHienMonHoc[ngay][tiet]) {
+                                    ngay = rand.nextInt(soNgayTrongTuan);
+                                    tiet = rand.nextInt(soTietTrongNgay);
                                 }
-//                                System.out.println("-------------------------------");
-//                                System.out.println(ngayHocGenPre.toString());
-//                                System.out.println(ngayHocGenNext.toString());
+                                System.out.println("Đổi sang ngày " + ngay + " tiet " + tiet);
+                                GiaoVien gv = dsGene.get(genPre).getNgayHoc(ngay, tiet).getGiaoVien();
+                                ngayHocGenPre.setGiaoVien(gv);
+                                ngayHocGenPre.setMonHoc(gv.getDsMonHocGVDay().getFirst());
+                                dsGene.get(genPre).getNgayHoc(ngay, tiet).setGiaoVien(gvTemp);
+                                dsGene.get(genPre).getNgayHoc(ngay, tiet).setMonHoc(monHocTemp);
+                                break outerLoop;
                             }
                         }
                     }
-//                    System.out.println("------------------------------------");
                 }
             }
             dsCaTheMoi.add(caThe);
         }
 //        System.out.println("So luong ca the moi: " + dsCaTheMoi.size());
         if (dsCaTheMoi.size() == 2) {
-//            dsCaTheMoi.get(0).printCaThe();
-//            dsCaTheMoi.get(1).printCaThe();
+            dsCaTheMoi.get(0).printCaThe();
+            dsCaTheMoi.get(1).printCaThe();
             return dsCaTheMoi;
         }
         return dsCaThe;
@@ -82,9 +85,6 @@ public class DotBien {
         dsCaThe.get(1).printCaThe();
 
         DotBien dotBien = new DotBien();
-        List<CaThe> dsCaTheMoi = new ArrayList<>();
-        dsCaTheMoi.addAll(dotBien.dotBien(dsCaThe));
-        dsCaTheMoi.get(0).printCaThe();
-        dsCaTheMoi.get(1).printCaThe();
+        dotBien.dotBien(dsCaThe);
     }
 }

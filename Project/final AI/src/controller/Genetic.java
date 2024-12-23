@@ -69,7 +69,7 @@ public class Genetic {
             quanTheMoi.getQuanThe().add(caTheNgauNhien);
 
             quanTheHienTai.getQuanThe().clear();
-            System.out.println("kich thuoc quan the hien tai sau khi remove " + quanTheHienTai.getQuanThe().size());
+            //System.out.println("kich thuoc quan the hien tai sau khi remove " + quanTheHienTai.getQuanThe().size());
             quanTheHienTai.getQuanThe().addAll(quanTheMoi.getQuanThe());
             caTheChaMe.clear();
 

@@ -44,7 +44,7 @@ public class ChonLocVaLaiGhep {
                 caTheMe = caThe;
             }
 //            } else {
-//                System.err.println("Cha hoac me null");
+//                System.out.println("Cha hoac me null");
 //            }
         }
         cacCaTheChaMe.add(caTheCha);
