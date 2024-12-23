@@ -24,6 +24,11 @@ public class Data {
     static GiaoVien gv8 = new GiaoVien("GV005", "Giao vien H", List.of(ly), 5);
     static GiaoVien gv9 = new GiaoVien("GV005", "Giao vien I", List.of(hoa), 5);
     static GiaoVien gv10 = new GiaoVien("GV005", "Giao vien J", List.of(hoa), 5);
+    static GiaoVien gv11 = new GiaoVien("GV005", "Giao vien K", List.of(hoa), 5);
+    static GiaoVien gv12 = new GiaoVien("GV005", "Giao vien O", List.of(toan), 5);
+    static GiaoVien gv13 = new GiaoVien("GV005", "Giao vien Z", List.of(anh), 5);
+    static GiaoVien gv14 = new GiaoVien("GV005", "Giao vien X", List.of(van), 5);
+    static GiaoVien gv15 = new GiaoVien("GV005", "Giao vien N", List.of(ly), 5);
 
     static Lop l1 = new Lop("12A1", "12A1");
     static Lop l2 = new Lop("12A2", "12A2");
@@ -52,6 +57,11 @@ public class Data {
         DanhSachGiaoVien.add(gv8);
         DanhSachGiaoVien.add(gv9);
         DanhSachGiaoVien.add(gv10);
+        DanhSachGiaoVien.add(gv11);
+        DanhSachGiaoVien.add(gv12);
+        DanhSachGiaoVien.add(gv13);
+        DanhSachGiaoVien.add(gv14);
+        DanhSachGiaoVien.add(gv15);
 
         return DanhSachGiaoVien;
     }

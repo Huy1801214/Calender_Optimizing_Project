@@ -65,8 +65,6 @@ public class Genetic {
             List<CaThe> cacCaTheConSauKhiDotBien = new ArrayList<>(dotBien.dotBien(cacCaTheCon));
 
             quanTheMoi.getQuanThe().addAll(cacCaTheConSauKhiDotBien);
-//            cacCaTheCon.clear();
-//            cacCaTheConSauKhiDotBien.clear();
             CaThe caTheNgauNhien = taoCaThe.taoCaThe(Data.taoDanhSachLop());
             quanTheMoi.getQuanThe().add(caTheNgauNhien);
 

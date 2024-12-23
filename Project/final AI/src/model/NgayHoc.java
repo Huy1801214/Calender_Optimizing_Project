@@ -46,10 +46,13 @@ public class NgayHoc {
     }
 
     @Override
+//    public String toString() {
+//        return  "thu: " + (thu + 2) +
+//                ", monHoc: " + monHoc +
+//                ", lop: " + lop +
+//                ", giaoVien: " + giaoVien;
+//    }
     public String toString() {
-        return  "thu: " + (thu + 2) +
-                ", monHoc: " + monHoc +
-                ", lop: " + lop +
-                ", giaoVien: " + giaoVien;
+        return monHoc + " " + giaoVien;
     }
 }

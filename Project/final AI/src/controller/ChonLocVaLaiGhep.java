@@ -2,6 +2,7 @@ package controller;
 
 import data.Data;
 import model.CaThe;
+import model.Gene;
 import model.QuanThe;
 
 import java.util.ArrayList;
@@ -16,11 +17,9 @@ b4 danh gia lại sau đó lay 5 cá thể tốt nhất
 b5 tạo quần thể mới
  */
 public class ChonLocVaLaiGhep {
-    QuanThe quanThe;
     TaoCaThe taoCaThe;
     Random rand;
     DanhGia danhGia;
-    double tileDotBien = 0.05;
 
     public ChonLocVaLaiGhep() {
         rand = new Random();
@@ -39,14 +38,6 @@ public class ChonLocVaLaiGhep {
             CaThe caThe = quanTheHienTai.getQuanThe().get(i);
             System.out.println("ca the thu " + i + " trong chon loc va lai ghep la");
             if (caTheCha == null || caTheCha.getFitnessScore() < caThe.getFitnessScore()) {
-                /*
-
-                 0 0
-                 c1 m1
-
-                 c2 m1
-
-                 */
                 caTheMe = caTheCha;
                 caTheCha = caThe;
             } else if (caTheMe == null || caTheMe.getFitnessScore() < caThe.getFitnessScore()) {
@@ -69,15 +60,20 @@ public class ChonLocVaLaiGhep {
         if (kichThuocCaThe > 0) {
             CaThe con1 = new CaThe();
             CaThe con2 = new CaThe();
-
-            int diemGiao = rand.nextInt(kichThuocCaThe);
-            for (int i = 0; i < kichThuocCaThe; i++) {
-                if (i < diemGiao) {
-                    con1.getGenes().add(cha.getGenes().get(i));
-                    con2.getGenes().add(me.getGenes().get(i));
-                } else {
-                    con2.getGenes().add(cha.getGenes().get(i));
-                    con1.getGenes().add(me.getGenes().get(i));
+            if (checkTrungLap(cha)) {
+                laiGhepNeuTrung(cha, me, kichThuocCaThe, con1, con2, cha.getGenes(), me.getGenes());
+            } else if (checkTrungLap(me)) {
+                laiGhepNeuTrung(me, cha, kichThuocCaThe, con1, con2, cha.getGenes(), me.getGenes());
+            } else {
+                int diemGiaoNeuKhongTrung = rand.nextInt(kichThuocCaThe);
+                for (int i = 0; i < kichThuocCaThe; i++) {
+                    if (i < diemGiaoNeuKhongTrung) {
+                        con1.getGenes().add(cha.getGenes().get(i));
+                        con2.getGenes().add(me.getGenes().get(i));
+                    } else {
+                        con2.getGenes().add(cha.getGenes().get(i));
+                        con1.getGenes().add(me.getGenes().get(i));
+                    }
                 }
             }
             cacCaTheCon.add(con1);
@@ -88,6 +84,55 @@ public class ChonLocVaLaiGhep {
         return cacCaTheCon;
     }
 
+    private void laiGhepNeuTrung(CaThe cha, CaThe me, int kichThuocCaThe, CaThe con1, CaThe con2, List<Gene> genes, List<Gene> genes2) {
+        int diemTrungCha = geneTrungLap(cha);
+        int diemGiaoBatKyCuaCaTheMe = rand.nextInt(kichThuocCaThe);
+        Gene geneTrungCuaMe = me.getGenes().get(diemGiaoBatKyCuaCaTheMe);
+        for (Gene gene : genes) {
+            con1.getGenes().add(gene);
+        }
+        con1.getGenes().set(diemTrungCha, geneTrungCuaMe);
+
+        Gene geneTrungCuaCha = cha.getGenes().get(diemTrungCha);
+        for (Gene gene : genes2) {
+            con2.getGenes().add(gene);
+        }
+        con2.getGenes().set(diemGiaoBatKyCuaCaTheMe, geneTrungCuaCha);
+    }
+
+    private boolean checkTrungLap(CaThe caThe) {
+        List<Gene> dsGene = caThe.getGenes();
+        for (int genPre = 0; genPre < dsGene.size(); genPre++) {
+            for (int genNext = genPre + 1; genNext < dsGene.size(); genNext++) {
+                for (int ngay = 0; ngay < dsGene.get(1).getSoNgayTrongTuan(); ngay++) {
+                    for (int tiet = 0; tiet < dsGene.get(1).getSoTietHocTrongNgay(); tiet++) {
+                        if (dsGene.get(genPre).getNgayHoc(ngay, tiet).getGiaoVien() == dsGene.get(genNext).getNgayHoc(ngay, tiet).getGiaoVien()) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private int geneTrungLap(CaThe caThe) {
+        List<Gene> dsGene = caThe.getGenes();
+        int viTri = 0;
+        for (int genPre = 0; genPre < dsGene.size(); genPre++) {
+            for (int genNext = genPre + 1; genNext < dsGene.size(); genNext++) {
+                for (int ngay = 0; ngay < dsGene.get(1).getSoNgayTrongTuan(); ngay++) {
+                    for (int tiet = 0; tiet < dsGene.get(1).getSoTietHocTrongNgay(); tiet++) {
+                        if (dsGene.get(genPre).getNgayHoc(ngay, tiet).getGiaoVien() == dsGene.get(genNext).getNgayHoc(ngay, tiet).getGiaoVien()) {
+                            viTri = genPre;
+                        }
+                    }
+                }
+            }
+        }
+        return viTri;
+    }
+
     public static void main(String[] args) {
         TaoQuanThe taoQuanThe = new TaoQuanThe();
         CaThe caTheTimDuoc = new CaThe();
@@ -96,32 +141,16 @@ public class ChonLocVaLaiGhep {
         taoQuanThe.printQuanThe(qt);
         System.out.println("--------------------------------------");
 
-        for (int i = 0; i < 10; i++) {
-            DanhGia danhGia = new DanhGia();
-            danhGia.danhGiaCacCaTheTrongQuanThe(qt);
-
-            for (CaThe caThe : qt.getQuanThe()) {
-                // neu tim duoc cá thể tốt thì dừng luôn
-                if (caThe.getFitnessScore() >= 800) {
-                    caTheTimDuoc = caThe;
-                    break;
-                }
-            }
-            ChonLocVaLaiGhep chonLocVaLaiGhep = new ChonLocVaLaiGhep();
-            List<CaThe> chaMe = chonLocVaLaiGhep.chonLocCaTheChaMe(qt);
-//        for (CaThe caThe : chaMe) {
-//            caThe.printCaThe();
-//        }
-            System.out.println("--------------");
-            System.out.println("Quan the moi la : ");
-
-            System.out.println("quan the sau khi swap");
-            taoQuanThe.printQuanThe(qt);
+        ChonLocVaLaiGhep chonLocVaLaiGhep = new ChonLocVaLaiGhep();
+        List<CaThe> caTheChaMe = chonLocVaLaiGhep.chonLocCaTheChaMe(qt);
+        for(CaThe chaMe : caTheChaMe) {
+            System.out.println("ca the cha hoac me la ");
+            chaMe.printCaThe();
         }
-
-        //  taoQuanThe.printQuanThe(qt);
-//        CaThe cha = chonLocVaLaiGhep.chonLocCaTheChaMe(qt);
-//        System.out.println("Cha hoac me la : ");
-//        cha.printCaThe();
+        List<CaThe> cacCaTheCon = chonLocVaLaiGhep.laiGhep(caTheChaMe.getFirst(), caTheChaMe.getLast());
+        for(CaThe con1 : cacCaTheCon) {
+            System.out.println("cac ca the con la ");
+            con1.printCaThe();
+        }
     }
 }

@@ -38,6 +38,6 @@ public class MonHoc {
 
     @Override
     public String toString() {
-        return tenMonHoc + '\'';
+        return tenMonHoc ;
     }
 }
