@@ -18,7 +18,7 @@ public class Genetic {
     CaThe caTheTimDuoc;
     DotBien dotBien;
 
-    final int soTheHeToiDa = 10;
+    final int soTheHeToiDa = 100;
     final int diemDung = 1000;
 
 
@@ -79,7 +79,7 @@ public class Genetic {
             soTheHe++;
         }
 
-        System.out.println("quan the tot nhat tim duoc la ");
+        System.out.println("Ca the tot nhat tim duoc la ");
         return timCaTheTotNhatTrongQuanTheCuoiCungNeuKhongTimDuoc(quanTheHienTai);
     }
 

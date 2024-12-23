@@ -23,7 +23,7 @@ public class TaoGene {
         dsMonHoc = data.taoDanhSachMonHoc();
         boolean[][] daXuatHienMonHoc = new boolean[gene.getSoNgayTrongTuan()][gene.getSoTietHocTrongNgay()];
 
-        int thu = 1;
+        int thu = 0;
         int soTiet = 0;
         for (MonHoc monHoc : dsMonHoc) {
             while (daXuatHienMonHoc[thu][soTiet]) {

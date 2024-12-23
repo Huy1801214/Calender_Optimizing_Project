@@ -43,8 +43,6 @@ public class ChonLocVaLaiGhep {
             } else if (caTheMe == null || caTheMe.getFitnessScore() < caThe.getFitnessScore()) {
                 caTheMe = caThe;
             }
-
-
 //            } else {
 //                System.err.println("Cha hoac me null");
 //            }
@@ -61,9 +59,9 @@ public class ChonLocVaLaiGhep {
             CaThe con1 = new CaThe();
             CaThe con2 = new CaThe();
             if (checkTrungLap(cha)) {
-                laiGhepNeuTrung(cha, me, kichThuocCaThe, con1, con2, cha.getGenes(), me.getGenes());
+                laiGhepNeuTrung(cha, me, con1, con2, cha.getGenes(), me.getGenes());
             } else if (checkTrungLap(me)) {
-                laiGhepNeuTrung(me, cha, kichThuocCaThe, con1, con2, cha.getGenes(), me.getGenes());
+                laiGhepNeuTrung(me, cha, con1, con2, cha.getGenes(), me.getGenes());
             } else {
                 int diemGiaoNeuKhongTrung = rand.nextInt(kichThuocCaThe);
                 for (int i = 0; i < kichThuocCaThe; i++) {
@@ -84,10 +82,13 @@ public class ChonLocVaLaiGhep {
         return cacCaTheCon;
     }
 
-    private void laiGhepNeuTrung(CaThe cha, CaThe me, int kichThuocCaThe, CaThe con1, CaThe con2, List<Gene> genes, List<Gene> genes2) {
-        int diemTrungCha = geneTrungLap(cha);
-        int diemGiaoBatKyCuaCaTheMe = rand.nextInt(kichThuocCaThe);
-        Gene geneTrungCuaMe = me.getGenes().get(diemGiaoBatKyCuaCaTheMe);
+    private void laiGhepNeuTrung(CaThe cha, CaThe me, CaThe con1, CaThe con2, List<Gene> genes, List<Gene> genes2) {
+        int diemTrungCha = viTriTrungLap(cha);
+        int diemTrungMe = rand.nextInt(me.getGenes().size());
+        if (checkTrungLap(me)) {
+            diemTrungMe = viTriTrungLap(me);
+        }
+        Gene geneTrungCuaMe = me.getGenes().get(diemTrungMe);
         for (Gene gene : genes) {
             con1.getGenes().add(gene);
         }
@@ -97,7 +98,7 @@ public class ChonLocVaLaiGhep {
         for (Gene gene : genes2) {
             con2.getGenes().add(gene);
         }
-        con2.getGenes().set(diemGiaoBatKyCuaCaTheMe, geneTrungCuaCha);
+        con2.getGenes().set(diemTrungMe, geneTrungCuaCha);
     }
 
     private boolean checkTrungLap(CaThe caThe) {
@@ -116,7 +117,7 @@ public class ChonLocVaLaiGhep {
         return false;
     }
 
-    private int geneTrungLap(CaThe caThe) {
+    private int viTriTrungLap(CaThe caThe) {
         List<Gene> dsGene = caThe.getGenes();
         int viTri = 0;
         for (int genPre = 0; genPre < dsGene.size(); genPre++) {
@@ -143,12 +144,12 @@ public class ChonLocVaLaiGhep {
 
         ChonLocVaLaiGhep chonLocVaLaiGhep = new ChonLocVaLaiGhep();
         List<CaThe> caTheChaMe = chonLocVaLaiGhep.chonLocCaTheChaMe(qt);
-        for(CaThe chaMe : caTheChaMe) {
+        for (CaThe chaMe : caTheChaMe) {
             System.out.println("ca the cha hoac me la ");
             chaMe.printCaThe();
         }
         List<CaThe> cacCaTheCon = chonLocVaLaiGhep.laiGhep(caTheChaMe.getFirst(), caTheChaMe.getLast());
-        for(CaThe con1 : cacCaTheCon) {
+        for (CaThe con1 : cacCaTheCon) {
             System.out.println("cac ca the con la ");
             con1.printCaThe();
         }

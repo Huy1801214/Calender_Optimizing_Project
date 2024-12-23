@@ -104,7 +104,7 @@ public class DanhGia {
                     }
                 }
             }
-            xungDot += (soTietThucTe != soTietDayToiDaTrongTuan) ? diemPhat : 0;
+            xungDot += (soTietThucTe > soTietDayToiDaTrongTuan) ? diemPhat : 0;
             soTietThucTe = 0;
 //            System.out.println("Xung dot: " + xungDot);
         }

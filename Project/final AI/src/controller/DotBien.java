@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+
 //- B4: Đột biến: 2 đột biến(khi giáo viên phải dạy 2 lớp trong cùng 1 tiết)
 //	+ Đổi môn học
 //	+ Đổi giáo viên
@@ -31,7 +32,7 @@ public class DotBien {
 
             List<Gene> dsGene = caThe.getGenes();
             for (int genPre = 0; genPre < dsGene.size(); genPre++) {
-                for (int genNext = genPre + 1; genNext < rand.nextInt(2, dsGene.size()); genNext++) {
+                for (int genNext = genPre + 1; genNext < rand.nextInt(2, dsGene.size() + 1); genNext++) {
 //                    dsGene.get(genPre).printTKB();
 //                    dsGene.get(genNext).printTKB();
                     for (int ngay = 0; ngay < dsGene.get(1).getSoNgayTrongTuan(); ngay++) {
@@ -41,7 +42,9 @@ public class DotBien {
                             if (ngayHocGenPre.getGiaoVien()
                                     == ngayHocGenNext.getGiaoVien()) {
                                 List<GiaoVien> dsGiaoViens = Data.taoDanhSachGiaoVien();
-                                for (GiaoVien gv : dsGiaoViens) {
+                                GiaoVien gv = null;
+                                while (ngayHocGenPre.getGiaoVien() != gv) {
+                                    gv = dsGiaoViens.get(rand.nextInt(dsGiaoViens.size()));
                                     if (ngayHocGenPre.getGiaoVien() != gv) {
                                         ngayHocGenPre.setGiaoVien(gv);
                                         ngayHocGenPre.setMonHoc(gv.getDsMonHocGVDay().getFirst());
