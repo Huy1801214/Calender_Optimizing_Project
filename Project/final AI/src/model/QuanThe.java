@@ -25,16 +25,4 @@ public class QuanThe {
         return quanThe;
     }
 
-    public void setQuanThe(List<CaThe> quanThe) {
-        this.quanThe = quanThe;
-    }
-
-    public int getKichThuocQuanThe() {
-        return kichThuocQuanThe;
-    }
-
-    public void setKichThuocQuanThe(int kichThuocQuanThe) {
-        this.kichThuocQuanThe = kichThuocQuanThe;
-    }
-
 }

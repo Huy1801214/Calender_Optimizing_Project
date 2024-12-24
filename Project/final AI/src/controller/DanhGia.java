@@ -9,10 +9,10 @@ import java.util.List;
 //- Cá thể: TKB cả trường(5 lớp)
 //- Quần thể: Tập hợp nhiều cá thể
 //- Yêu cầu về TKB:
-//        + 1 ngày 1 môn
-//   + 5 ngày dạy trong tuần
-//   + 1 môn 2 người dạy
-//   + 5 lớp
+//          + 1 ngày 1 môn
+//          + 5 ngày dạy trong tuần
+//          + 1 môn 2 người dạy
+//          + 5 lớp
 //- B1: Random ra nhiều TKB cả trường(cá thể)
 //- B2: Đánh giá các TKB cả trường(cá thể)
 //- B3: Chọn lọc và lai ghép các TKB cả trường với nhau
@@ -20,7 +20,7 @@ import java.util.List;
 //	+ Đổi môn học
 //	+ Đổi giáo viên
 /*
-yêu cầu: không có xung đột 100đ
+yêu cầu: không có xung đột 1000đ
     ràng buộc cứng :
         x1: giáo viên chỉ được dạy 1 lớp trong cùng 1 tiết của cùng 1 ngày
         (kiểm tra xem giáo viên có dạy nhiều hơn 1 lớp trong tiết đó không) nếu xung đột -20đ
@@ -64,8 +64,7 @@ public class DanhGia {
 //                dsGene.get(genNext).printTKB();
                 for (int ngay = 0; ngay < dsGene.get(1).getSoNgayTrongTuan(); ngay++) {
                     for (int tiet = 0; tiet < dsGene.get(1).getSoTietHocTrongNgay(); tiet++) {
-                        if (dsGene.get(genPre).getNgayHoc(ngay, tiet).getGiaoVien()
-                                == dsGene.get(genNext).getNgayHoc(ngay, tiet).getGiaoVien()) {
+                        if (dsGene.get(genPre).getNgayHoc(ngay, tiet).getGiaoVien() == dsGene.get(genNext).getNgayHoc(ngay, tiet).getGiaoVien()) {
                             xungDot += diemPhat;
 //                            System.out.println("-------------------------------");
 //                            System.out.println(dsGene.get(genPre).getNgayHoc(ngay, tiet).toString());
@@ -128,31 +127,4 @@ public class DanhGia {
         }
 
     }
-
-
-//    /**
-//     * 4.Tính điểm thưởng cho các tiết học liên tiếp cùng một môn.
-//     */
-//    private int tinhDiemUuTienTietLienTiep(ThoiKhoaBieu tkb) {
-//        int bonus = 0;
-//
-//        for (int ngay = 0; ngay < tkb.getSoNgayTrongTuan(); ngay++) {
-//            String monTruoc = null;
-//
-//            for (int tiet = 0; tiet < tkb.getSoTietHocTrongNgay(); tiet++) {
-//                TietHoc tietHoc = tkb.getTietHoc(ngay, tiet);
-//
-//                if (tietHoc != null) {
-//                    String monHienTai = tietHoc.getMonHoc().getTenMon();
-//                    if (monHienTai.equals(monTruoc)) {
-//                        bonus += diemThuongTietLienTiep; // Cộng điểm nếu môn học liên tiếp
-//                    }
-//                    monTruoc = monHienTai;
-//                } else {
-//                    monTruoc = null;
-//                }
-//            }
-//        }
-//        return bonus;
-//    }
 }

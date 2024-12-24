@@ -15,36 +15,12 @@ public class GiaoVien {
         this.soTietDayToiDaTrongTuan = soTietDayToiDaTrongTuan;
     }
 
-    public String getMaGV() {
-        return maGV;
-    }
-
-    public void setMaGV(String maGV) {
-        this.maGV = maGV;
-    }
-
-    public String getTenGV() {
-        return tenGV;
-    }
-
-    public void setTenGV(String tenGV) {
-        this.tenGV = tenGV;
-    }
-
     public List<MonHoc> getDsMonHocGVDay() {
         return dsMonHocGVDay;
     }
 
-    public void setDsMonHocGVDay(List<MonHoc> dsMonHocGVDay) {
-        this.dsMonHocGVDay = dsMonHocGVDay;
-    }
-
     public int getSoTietDayToiDaTrongTuan() {
         return soTietDayToiDaTrongTuan;
-    }
-
-    public void setSoTietDayToiDaTrongTuan(int soTietDayToiDaTrongTuan) {
-        this.soTietDayToiDaTrongTuan = soTietDayToiDaTrongTuan;
     }
 
     @Override

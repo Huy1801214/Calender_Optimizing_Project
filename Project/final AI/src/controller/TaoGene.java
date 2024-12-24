@@ -12,29 +12,28 @@ public class TaoGene {
     Gene gene;
     List<MonHoc> dsMonHoc;
     List<GiaoVien> dsGiaoVien;
-    Data data;
 
     public TaoGene() {
     }
 
     public Gene taoTKBChoMoiLop(Lop lop) {
         gene = new Gene(lop);
-        dsGiaoVien = data.taoDanhSachGiaoVien();
-        dsMonHoc = data.taoDanhSachMonHoc();
+        dsGiaoVien = Data.taoDanhSachGiaoVien();
+        dsMonHoc = Data.taoDanhSachMonHoc();
         boolean[][] daXuatHienMonHoc = new boolean[gene.getSoNgayTrongTuan()][gene.getSoTietHocTrongNgay()];
 
-        int thu = 0;
+        int ngay = 0;
         int soTiet = 0;
         for (MonHoc monHoc : dsMonHoc) {
-            while (daXuatHienMonHoc[thu][soTiet]) {
-                thu = rand.nextInt(gene.getSoNgayTrongTuan());
+            while (daXuatHienMonHoc[ngay][soTiet]) {
+                ngay = rand.nextInt(gene.getSoNgayTrongTuan());
                 soTiet = rand.nextInt(gene.getSoTietHocTrongNgay());
             }
-            daXuatHienMonHoc[thu][soTiet] = true;
+            daXuatHienMonHoc[ngay][soTiet] = true;
 
             GiaoVien giaoVien = chonGiaoVienThichHop(monHoc);
-            NgayHoc ngayHoc = new NgayHoc(thu, monHoc, lop, giaoVien);
-            gene.setNgayHoc(thu, soTiet, ngayHoc);
+            NgayHoc ngayHoc = new NgayHoc(ngay, monHoc, lop, giaoVien);
+            gene.setNgayHoc(ngay, soTiet, ngayHoc);
         }
         return gene;
     }
@@ -47,8 +46,7 @@ public class TaoGene {
                 dsGiaoVienThichHopChoMonHoc.add(giaoVien);
             }
         }
-        GiaoVien giaoVienThichHop = dsGiaoVienThichHopChoMonHoc.get(rand.nextInt(dsGiaoVienThichHopChoMonHoc.size()));
-        return giaoVienThichHop;
+        return dsGiaoVienThichHopChoMonHoc.get(rand.nextInt(dsGiaoVienThichHopChoMonHoc.size()));
     }
 
     public static void main(String[] args) {

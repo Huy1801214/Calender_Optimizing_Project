@@ -13,14 +13,6 @@ public class NgayHoc {
         this.giaoVien = giaoVien;
     }
 
-    public int getThu() {
-        return thu;
-    }
-
-    public void setThu(int thu) {
-        this.thu = thu;
-    }
-
     public MonHoc getMonHoc() {
         return monHoc;
     }

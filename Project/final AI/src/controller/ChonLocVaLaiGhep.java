@@ -9,13 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/*
-b1 đánh giá chọn ra 2 cá the cha mẹ
-b2 lai ghep
-b3 đột bien
-b4 danh gia lại sau đó lay 5 cá thể tốt nhất
-b5 tạo quần thể mới
- */
 public class ChonLocVaLaiGhep {
     TaoCaThe taoCaThe;
     Random rand;
@@ -27,6 +20,7 @@ public class ChonLocVaLaiGhep {
         taoCaThe = new TaoCaThe();
     }
 
+    //lay 2 ca the cao điểm nhat làm cha mẹ
     public List<CaThe> chonLocCaTheChaMe(QuanThe quanTheHienTai) {
         List<CaThe> cacCaTheChaMe = new ArrayList<>();
         danhGia.danhGiaCacCaTheTrongQuanThe(quanTheHienTai);
@@ -34,7 +28,7 @@ public class ChonLocVaLaiGhep {
         CaThe caTheCha = null;
         CaThe caTheMe = null;
 
-        for (int i = 0; i < quanTheHienTai.getKichThuocQuanThe(); i++) {
+        for (int i = 0; i < quanTheHienTai.getQuanThe().size(); i++) {
             CaThe caThe = quanTheHienTai.getQuanThe().get(i);
             System.out.println("ca the thu " + i + " trong chon loc va lai ghep la");
             if (caTheCha == null || caTheCha.getFitnessScore() < caThe.getFitnessScore()) {
@@ -52,6 +46,7 @@ public class ChonLocVaLaiGhep {
         return cacCaTheChaMe;
     }
 
+    //neu ca the cha hoặc mẹ trung thì hoán đổi de tạo ra con, nếu kh trùng random
     public List<CaThe> laiGhep(CaThe cha, CaThe me) {
         List<CaThe> cacCaTheCon = new ArrayList<>();
         int kichThuocCaThe = Data.taoDanhSachLop().size();
@@ -77,25 +72,25 @@ public class ChonLocVaLaiGhep {
             cacCaTheCon.add(con1);
             cacCaTheCon.add(con2);
         } else {
-            System.out.println("Kích thước cá thể không hợp lệ: " + kichThuocCaThe);
+            System.out.println("Kích thước cá thể thiếu: " + kichThuocCaThe);
         }
         return cacCaTheCon;
     }
 
-    private void laiGhepNeuTrung(CaThe cha, CaThe me, CaThe con1, CaThe con2, List<Gene> genes, List<Gene> genes2) {
+    private void laiGhepNeuTrung(CaThe cha, CaThe me, CaThe con1, CaThe con2, List<Gene> geneCha, List<Gene> geneMe) {
         int diemTrungCha = viTriTrungLap(cha);
         int diemTrungMe = rand.nextInt(me.getGenes().size());
         if (checkTrungLap(me)) {
             diemTrungMe = viTriTrungLap(me);
         }
         Gene geneTrungCuaMe = me.getGenes().get(diemTrungMe);
-        for (Gene gene : genes) {
+        for (Gene gene : geneCha) {
             con1.getGenes().add(gene);
         }
         con1.getGenes().set(diemTrungCha, geneTrungCuaMe);
 
         Gene geneTrungCuaCha = cha.getGenes().get(diemTrungCha);
-        for (Gene gene : genes2) {
+        for (Gene gene : geneMe) {
             con2.getGenes().add(gene);
         }
         con2.getGenes().set(diemTrungMe, geneTrungCuaCha);
@@ -107,7 +102,7 @@ public class ChonLocVaLaiGhep {
             for (int genNext = genPre + 1; genNext < dsGene.size(); genNext++) {
                 for (int ngay = 0; ngay < dsGene.get(1).getSoNgayTrongTuan(); ngay++) {
                     for (int tiet = 0; tiet < dsGene.get(1).getSoTietHocTrongNgay(); tiet++) {
-                        if (dsGene.get(genPre).getNgayHoc(ngay, tiet).getGiaoVien() == dsGene.get(genNext).getNgayHoc(ngay, tiet).getGiaoVien()) {
+                        if (dsGene.get(genPre).getNgayHoc(ngay, tiet).getGiaoVien().equals(dsGene.get(genNext).getNgayHoc(ngay, tiet).getGiaoVien())) {
                             return true;
                         }
                     }
@@ -124,7 +119,7 @@ public class ChonLocVaLaiGhep {
             for (int genNext = genPre + 1; genNext < dsGene.size(); genNext++) {
                 for (int ngay = 0; ngay < dsGene.get(1).getSoNgayTrongTuan(); ngay++) {
                     for (int tiet = 0; tiet < dsGene.get(1).getSoTietHocTrongNgay(); tiet++) {
-                        if (dsGene.get(genPre).getNgayHoc(ngay, tiet).getGiaoVien() == dsGene.get(genNext).getNgayHoc(ngay, tiet).getGiaoVien()) {
+                        if (dsGene.get(genPre).getNgayHoc(ngay, tiet).getGiaoVien().equals(dsGene.get(genNext).getNgayHoc(ngay, tiet).getGiaoVien())) {
                             viTri = genPre;
                         }
                     }
@@ -136,7 +131,6 @@ public class ChonLocVaLaiGhep {
 
     public static void main(String[] args) {
         TaoQuanThe taoQuanThe = new TaoQuanThe();
-        CaThe caTheTimDuoc = new CaThe();
         QuanThe qt = taoQuanThe.taoQuanThe(Data.taoDanhSachLop());
         System.out.println("Quan the ban dau la ");
         taoQuanThe.printQuanThe(qt);

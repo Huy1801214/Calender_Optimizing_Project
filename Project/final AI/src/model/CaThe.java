@@ -27,10 +27,6 @@ public class CaThe implements Cloneable {
         this.genes = new ArrayList<>();
     }
 
-    protected Object clone() throws CloneNotSupportedException {
-        return new CaThe(genes);
-    }
-
     public int getFitnessScore() {
         return fitnessScore;
     }
@@ -39,20 +35,8 @@ public class CaThe implements Cloneable {
         this.fitnessScore = fitnessScore;
     }
 
-    public int getKichThuocCaThe() {
-        return kichThuocCaThe;
-    }
-
-    public void setKichThuocCaThe(int kichThuocCaThe) {
-        this.kichThuocCaThe = kichThuocCaThe;
-    }
-
     public List<Gene> getGenes() {
         return genes;
-    }
-
-    public void setGenes(List<Gene> genes) {
-        this.genes = genes;
     }
 
     public void printCaThe() {
@@ -61,7 +45,7 @@ public class CaThe implements Cloneable {
             gene.printTKB();
             System.out.println();
         }
-        System.out.println("diem " + caThe.getFitnessScore());
+        //System.out.println("diem " + caThe.getFitnessScore());
     }
 
     public static void main(String[] args) {

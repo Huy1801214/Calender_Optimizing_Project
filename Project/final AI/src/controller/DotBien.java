@@ -8,15 +8,16 @@ import java.util.List;
 import java.util.Random;
 
 
-//- B4: Đột biến: 2 đột biến(khi giáo viên phải dạy 2 lớp trong cùng 1 tiết)
-//	+ Đổi môn học
-//	+ Đổi giáo viên
+/*
+    đột biến bang cách xét cá thể(tkb toàn trg) con neu co gene(tkb lớp) trung thì đổi chỗ ngày học
+    hôm đó của gen với 4 ngày còn lại
+ */
 public class DotBien {
     int tiLeDotBien = 50;
 
     public List<CaThe> dotBien(List<CaThe> dsCaThe) {
         List<CaThe> dsCaTheMoi = new ArrayList<>();
-        CaThe caThe = null;
+        CaThe caTheDotBien = null;
         Random rand = new Random();
         int tiLeNgauNhien = rand.nextInt(101);
         System.out.println("Ti le ngau nhien: " + tiLeNgauNhien);
@@ -28,25 +29,26 @@ public class DotBien {
             } else {
                 dsCaTheMoi.add(dsCaThe.get(0));
             }
-            caThe = dsCaThe.get(viTriCaTheNgauNhien);
+            caTheDotBien = dsCaThe.get(viTriCaTheNgauNhien);
 
-            List<Gene> dsGene = caThe.getGenes();
+            List<Gene> dsGene = caTheDotBien.getGenes();
             outerLoop:
             for (int genPre = 0; genPre < dsGene.size(); genPre++) {
                 for (int genNext = genPre + 1; genNext < dsGene.size(); genNext++) {
                     int soNgayTrongTuan = dsGene.get(1).getSoNgayTrongTuan();
                     int soTietTrongNgay = dsGene.get(1).getSoTietHocTrongNgay();
-                    boolean[][] daXuatHienMonHoc = new boolean[soNgayTrongTuan][soTietTrongNgay];
+                    boolean[][] daXuatHienGiaoVien = new boolean[soNgayTrongTuan][soTietTrongNgay];
                     for (int ngay = 0; ngay < soNgayTrongTuan; ngay++) {
                         for (int tiet = 0; tiet < soTietTrongNgay; tiet++) {
                             NgayHoc ngayHocGenPre = dsGene.get(genPre).getNgayHoc(ngay, tiet);
                             NgayHoc ngayHocGenNext = dsGene.get(genNext).getNgayHoc(ngay, tiet);
                             GiaoVien gvTemp = ngayHocGenPre.getGiaoVien();
-                            MonHoc monHocTemp = gvTemp.getDsMonHocGVDay().getFirst();
+                            MonHoc monHocTemp = ngayHocGenPre.getMonHoc();
+                            // kiểm tra nếu gv của tkb hiện tại trùng với gv của tkb tiep theo
                             if (ngayHocGenPre.getGiaoVien() == ngayHocGenNext.getGiaoVien()) {
-                                daXuatHienMonHoc[ngay][tiet] = true;
-                                System.out.println("Đã xuất hiện ngày " + ngay + " tiet " + tiet + daXuatHienMonHoc[ngay][tiet]);
-                                while (daXuatHienMonHoc[ngay][tiet]) {
+                                daXuatHienGiaoVien[ngay][tiet] = true;
+                                System.out.println("Đã xuất hiện ngày " + ngay + " tiet " + tiet + daXuatHienGiaoVien[ngay][tiet]);
+                                while (daXuatHienGiaoVien[ngay][tiet]) {
                                     ngay = rand.nextInt(soNgayTrongTuan);
                                     tiet = rand.nextInt(soTietTrongNgay);
                                 }
@@ -62,7 +64,7 @@ public class DotBien {
                     }
                 }
             }
-            dsCaTheMoi.add(caThe);
+            dsCaTheMoi.add(caTheDotBien);
         }
 //        System.out.println("So luong ca the moi: " + dsCaTheMoi.size());
         if (dsCaTheMoi.size() == 2) {

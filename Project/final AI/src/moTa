@@ -1,0 +1,12 @@
+1 gene là 1 tkb của 1 lop
+
+1 cá thể là 1 tkb của toàn trg
+
+1 quần thể là 1 danh sách nhiều cá thể
+
+Tổng quan hàm genetic:
+danh giá qt hiện tại (set điểm) -> chọn cha mẹ -> lai ghép và đột biến
+-> tao ra qt mới (dừng nếu đủ điểm hoặc hết thế hệ) -> lặp lại đến khi tìm dc cá thể tot nhất
+
+
+
